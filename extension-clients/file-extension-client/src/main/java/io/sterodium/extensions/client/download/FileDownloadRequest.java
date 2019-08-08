@@ -38,7 +38,7 @@ public class FileDownloadRequest {
     public File download(String pathToFile, String extension) {
         String encodedPath;
         encodedPath = Base64.getUrlEncoder().encodeToString(pathToFile.getBytes(StandardCharsets.UTF_8));
-
+        LOGGER.info("encodedPath(FileDownloadRequest) is "+encodedPath);
         HttpGet request = new HttpGet(String.format(FILE_DOWNLOAD_EXTENSION_PATH, sessionId, encodedPath));
         try {
             CloseableHttpClient httpClient = HttpClients.createDefault();

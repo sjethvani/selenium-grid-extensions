@@ -29,8 +29,8 @@ public class FileDownloadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pathInfo = req.getRequestURI().substring(req.getServletPath().length() + 1);
-        pathInfo = new String(Base64.getUrlDecoder().decode(pathInfo.getBytes()));
         LOGGER.info("Request for file download received with path: " + pathInfo);
+        pathInfo = new String(Base64.getUrlDecoder().decode(pathInfo.getBytes()));
 
         File file = new File(pathInfo);
         if (!fileExistsAndNotDirectory(file, resp)) {
