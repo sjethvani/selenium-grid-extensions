@@ -37,6 +37,7 @@ public class FileDownloadRequest {
 
     public File download(String pathToFile, String extension) {
         String encodedPath;
+        LOGGER.info("download request is triggered for file "+pathToFile+" and extension as "+extension);
         encodedPath = Base64.getUrlEncoder().encodeToString(pathToFile.getBytes(StandardCharsets.UTF_8));
         LOGGER.info("encodedPath(FileDownloadRequest) is "+encodedPath);
         HttpGet request = new HttpGet(String.format(FILE_DOWNLOAD_EXTENSION_PATH, sessionId, encodedPath));
@@ -51,6 +52,7 @@ public class FileDownloadRequest {
                         InputStream responseStream = execute.getEntity().getContent()) {
                     IOUtils.copy(responseStream, outputStream);
                 }
+                LOGGER.info("download request was executed successful for file "+pathToFile+" and extension as "+extension);
                 return downloadResult;
             } else {
                 String message = IOUtils.toString(execute.getEntity().getContent(), "UTF-8");
@@ -62,6 +64,7 @@ public class FileDownloadRequest {
     }
 
     public File download(String pathToFile) {
+    	LOGGER.info("download request is triggered for file "+pathToFile);
         String encodedPath;
         encodedPath = Base64.getUrlEncoder().encodeToString(pathToFile.getBytes(StandardCharsets.UTF_8));
 
@@ -77,6 +80,7 @@ public class FileDownloadRequest {
                         InputStream responseStream = execute.getEntity().getContent()) {
                     IOUtils.copy(responseStream, outputStream);
                 }
+                LOGGER.info("download request was executed successful for file "+pathToFile);
                 return downloadResult;
             } else {
                 String message = IOUtils.toString(execute.getEntity().getContent(), "UTF-8");

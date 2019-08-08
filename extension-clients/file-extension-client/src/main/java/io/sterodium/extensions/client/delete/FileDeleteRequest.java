@@ -35,6 +35,7 @@ public class FileDeleteRequest {
 
     public boolean delete(String pathToFile) {
         String encodedPath;
+        LOGGER.info("delete request is triggered for file "+pathToFile);
         encodedPath = Base64.getUrlEncoder().encodeToString(pathToFile.getBytes(StandardCharsets.UTF_8));
 
         HttpGet request = new HttpGet(String.format(FILE_DELETE_EXTENSION_PATH, sessionId, encodedPath));

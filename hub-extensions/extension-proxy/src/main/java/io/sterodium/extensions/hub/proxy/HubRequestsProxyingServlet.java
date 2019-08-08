@@ -66,6 +66,7 @@ public class HubRequestsProxyingServlet extends RegistryBasedServlet {
         }
 
         try {
+        	LOGGER.info("forwardRequest with above created extension client");
             requestForwardingClient.forwardRequest(req, resp);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Exception during request forwarding", e);
@@ -74,7 +75,7 @@ public class HubRequestsProxyingServlet extends RegistryBasedServlet {
     }
 
     private RequestForwardingClient createExtensionClient(String path) {
-        LOGGER.info("Forwarding request with path: " + path);
+        LOGGER.info("createExtensionClient with path: " + path);
         String sessionId = SeleniumSessions.getSessionIdFromPath(path);
         LOGGER.info("Retrieving remote host for session: " + sessionId);
 

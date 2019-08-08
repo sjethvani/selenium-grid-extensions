@@ -70,6 +70,7 @@ public class RequestForwardingClient {
     }
 
     private HttpRequestBase createPostRequest(HttpServletRequest request) throws IOException {
+    	LOGGER.info("creating post http request");
         HttpPost httpPost = new HttpPost();
         InputStreamEntity entity = new InputStreamEntity(request.getInputStream(),
                 request.getContentLength(),
